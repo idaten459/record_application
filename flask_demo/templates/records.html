@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>records!</div>
+<ul>
+    {% for record in records %}
+    ID: {{record.user_id}}
+    <ul>
+        <li>日付: {{record.date}}</li>
+        <li>種目: {{record.category}}</li>
+        <li>セット数: {{record.sets}}</li>
+        <li>リピート数: {{record.reps}}</li>
+        <li>重量: {{record.weight}}</li>
+    </ul>
+    {% endfor %}
+</ul>
+{% endblock %}

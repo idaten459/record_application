@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:latest
+    extends:
+      file: secret.yaml
+      service: db
+    ports:
+      - 5432:5432
+    restart: always
+    container_name: record_pg
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+  server:
+    build: .
+    container_name: record_server
+    volumes:
+      - ./flask_demo:/usr/local/src/work
+    ports:
+      - 5000:5000
+    tty: true
+    depends_on:
+      - db
